@@ -11,26 +11,6 @@ Online Boutique consists of a 10-tier microservices application. The application
 web-based e-commerce app where users can browse items,
 add them to the cart, and purchase them.
 
-**Google uses this application to demonstrate use of technologies like
-Kubernetes/GKE, Istio, Stackdriver, gRPC and OpenCensus**. This application
-works on any Kubernetes cluster, as well as Google
-Kubernetes Engine. It’s **easy to deploy with little to no configuration**.
-
-If you’re using this demo, please **★Star** this repository to show your interest!
-
-> 👓**Note to Googlers:** Please fill out the form at
-> [go/microservices-demo](http://go/microservices-demo) if you are using this
-> application.
-
-Looking for the old Hipster Shop frontend interface? Use the [manifests](https://github.com/GoogleCloudPlatform/microservices-demo/tree/v0.1.5/kubernetes-manifests) in release [v0.1.5](https://github.com/GoogleCloudPlatform/microservices-demo/releases/v0.1.5).
-
-## Screenshots
-
-| Home Page                                                                                                         | Checkout Screen                                                                                                    |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| [![Screenshot of store homepage](./docs/img/online-boutique-frontend-1.png)](./docs/img/online-boutique-frontend-1.png) | [![Screenshot of checkout screen](./docs/img/online-boutique-frontend-2.png)](./docs/img/online-boutique-frontend-2.png) |
-
-
 ## Quickstart (GKE)
 
 1. **[Create a Google Cloud Platform project](https://cloud.google.com/resource-manager/docs/creating-managing-projects#creating_a_project)** or use an existing project. Set the `PROJECT_ID` environment variable and ensure the Google Kubernetes Engine and Cloud Operations APIs are enabled.
@@ -145,41 +125,9 @@ Find **Protocol Buffers Descriptions** at the [`./pb` directory](./pb).
 | [adservice](./src/adservice)                         | Java          | Provides text ads based on given context words.                                                                                   |
 | [loadgenerator](./src/loadgenerator)                 | Python/Locust | Continuously sends requests imitating realistic user shopping flows to the frontend.                                              |
 
-## Features
 
-- **[Kubernetes](https://kubernetes.io)/[GKE](https://cloud.google.com/kubernetes-engine/):**
-  The app is designed to run on Kubernetes (both locally on "Docker for
-  Desktop", as well as on the cloud with GKE).
-- **[gRPC](https://grpc.io):** Microservices use a high volume of gRPC calls to
-  communicate to each other.
-- **[Istio](https://istio.io):** Application works on Istio service mesh.
-- **[OpenCensus](https://opencensus.io/) Tracing:** Most services are
-  instrumented using OpenCensus trace interceptors for gRPC/HTTP.
-- **[Cloud Operations (Stackdriver)](https://cloud.google.com/products/operations):** Many services
-  are instrumented with **Profiling**, **Tracing** and **Debugging**. In
-  addition to these, using Istio enables features like Request/Response
-  **Metrics** and **Context Graph** out of the box. When it is running out of
-  Google Cloud, this code path remains inactive.
-- **[Skaffold](https://skaffold.dev):** Application
-  is deployed to Kubernetes with a single command using Skaffold.
-- **Synthetic Load Generation:** The application demo comes with a background
-  job that creates realistic usage patterns on the website using
-  [Locust](https://locust.io/) load generator.
 
-## Local Development 
 
-If you would like to contribute features or fixes to this app, see the [Development Guide](/docs/development-guide.md) on how to build this demo locally. 
-
-## Demos featuring Online Boutique
-
-- [Google Cloud Next'18 London – Keynote](https://youtu.be/nIq2pkNcfEI?t=3071)
-  showing Stackdriver Incident Response Management
-- Google Cloud Next'18 SF
-  - [Day 1 Keynote](https://youtu.be/vJ9OaAqfxo4?t=2416) showing GKE On-Prem
-  - [Day 3 – Keynote](https://youtu.be/JQPOPV_VH5w?t=815) showing Stackdriver
-    APM (Tracing, Code Search, Profiler, Google Cloud Build)
-  - [Introduction to Service Management with Istio](https://www.youtube.com/watch?v=wCJrdKdD6UM&feature=youtu.be&t=586)
-- [KubeCon EU 2019 - Reinventing Networking: A Deep Dive into Istio's Multicluster Gateways - Steve Dake, Independent](https://youtu.be/-t2BfT59zJA?t=982)
 
 ---
 
