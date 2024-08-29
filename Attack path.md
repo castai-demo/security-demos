@@ -7,7 +7,7 @@ During the demo (where you will actually have the attack paths present as the fo
 'Vulnerabilities' menu first and explain how the customer will have to deal with 1000s of CVEs if they are going that route.
 Next show them how attack paths can get them to priorotize which ones to be fixed first because of high risk.
 
-Step 1: Let's add an ingress controller and expose the emailservice to the internet.
+Step 1: Let's add an ingress controller and expose an nginx service to the internet.
 
 ```
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
