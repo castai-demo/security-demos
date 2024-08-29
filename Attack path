@@ -1,3 +1,8 @@
+```
+git clone https://github.com/GoogleCloudPlatform/microservices-demo.git
+cd microservices-demo
+```
+
 Before proceeding to this use-case, check the 'Attack path' under Security. 
 You will not be seeing anything there because this cluster currently is not being exposed to the internet through any ingress controller or service.
 During the demo (where you will actually have the attack paths present as the following configurations will already be set up), show the 
