@@ -18,3 +18,4 @@ NAME                                     TYPE           CLUSTER-IP       EXTERNA
 nginx-ingress-ingress-nginx-controller   LoadBalancer   34.118.234.125   34.46.43.231   80:30640/TCP,443:31409/TCP   7m3s
 
 Next, apply this yaml to create an nginx ingress service, expose the deployment with 'ClusterIP' and an ingress resource:
+https://github.com/castai-demo/security-demos/blob/master/ingress-config.yaml
