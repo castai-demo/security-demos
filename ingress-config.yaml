@@ -1,0 +1,72 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: default
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-tls-secret
+  namespace: default
+type: kubernetes.io/tls
+data:
+  tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURVVENDQWprQ0ZEZWVCQ3hzN3hSd0tHdDR4Tm50a0lqM1IvMEJNQTBHQ1NxR1NJYjNEUUVCQ3dVQU1HVXgKQ3pBSkJnTlZCQVlUQWxWVE1Rc3dDUVlEVlFRSURBSkRRVEVSTUE4R0ExVUVCd3dJVTJGdUlFcHZjMlV4RFRBTApCZ05WQkFvTUJFTkJVMVF4RFRBTEJnTlZCQXNNQkUxTFZFY3hHREFXQmdOVkJBTU1EMk5oYzNRdWMyVmpaR1Z0CmJ5NWhhVEFlRncweU5EQTRNakF4T0RBeE1EVmFGdzB5TlRBNE1qQXhPREF4TURWYU1HVXhDekFKQmdOVkJBWVQKQWxWVE1Rc3dDUVlEVlFRSURBSkRRVEVSTUE4R0ExVUVCd3dJVTJGdUlFcHZjMlV4RFRBTEJnTlZCQW9NQkVOQgpVMVF4RFRBTEJnTlZCQXNNQkUxTFZFY3hHREFXQmdOVkJBTU1EMk5oYzNRdWMyVmpaR1Z0Ynk1aGFUQ0NBU0l3CkRRWUpLb1pJaHZjTkFRRUJCUUFEZ2dFUEFEQ0NBUW9DZ2dFQkFQTSsrK1dGeFp6QklCV2w4N00xSUh5TTNtMWgKVUNMVTBtM2tRUXlSYk9yUVZBUFFOSjVhcHh2dWhyczFjVncyZlR2MEFRYnArM2VWaFdvdVBqR09zSExLYlFzYgpOSW91cm5pMzBzdDllV0UyU0pHRkw2NUV6cVJMSytHRWEyUHR2bUR4R3EveWRidXE2aStGVlpmb1ZNWXBPQzlVCmxKZWpZWDlUaWpYdEhiNkpOVThWejFjZllWTnlWOGo1YkJQZ1JZRlhLUXRTWVpYZG1xOGJnZnJQZmZLZ2Z0b0QKRnpoS3MzUnRoYS9RSmRHR2VOalFNNVBMZ1JZUnltWDd4UVQ4M3Btb3M1cTZlS3l6V2kvb1JtandickhMbXljTgo4ZkZHTDJFVm4yVExTNXY4WTE2WkJBYUdzdDFoYTBlQ1hpU0VNTlc5N0dtVzBsVFJxZGovemlBSzBtc0NBd0VBCkFUQU5CZ2txaGtpRzl3MEJBUXNGQUFPQ0FRRUFHbHo0cVd5TGlQRmRndS9RM08zMTYwODBZZy9JajMweENhS1QKYWNRVGpNdXlkaXdXL0VkOVF4TlF0MzNObFFVemJEaWl0Qklackg4RGhaNldHNG9NVmpPZkZlR0lDOGU2QzgrbQpDZklMUHFkNFl0aDhoNi94dDdVeUd1dXBaenVxM3Uvd0FUVm1zbTBjNFQ4VGQrNHh4VFhnTGh2bHNpSXFObUxECmNhZDVNUXpENU5yeUxYaHNuaGlPdXBack9FWVVSUU96RDhKUlhmcU8vUGdMN09YMFlPbk8rZXRMLzZadW5MZnAKTkdBZ3ozdVZVZU94M2pzRFRUVXJ4YVcvekVZNlZSZXljQzhINCtkTnl5TERYeHA3d3Fqd3ljeE40V3d1c2NWcwpXaGhHR3pjblh1ek1Uak4weDNId29JcEdYNE05S2RRZ2pYelorU3BSckI0dXl2OUVrQT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+  tls.key: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRRHpQdnZsaGNXY3dTQVYKcGZPek5TQjhqTjV0WVZBaTFOSnQ1RUVNa1d6cTBGUUQwRFNlV3FjYjdvYTdOWEZjTm4wNzlBRUc2ZnQzbFlWcQpMajR4anJCeXltMExHelNLTHE1NHQ5TExmWGxoTmtpUmhTK3VSTTZrU3l2aGhHdGo3YjVnOFJxdjhuVzdxdW92CmhWV1g2RlRHS1RndlZKU1hvMkYvVTRvMTdSMitpVFZQRmM5WEgyRlRjbGZJK1d3VDRFV0JWeWtMVW1HVjNacXYKRzRINnozM3lvSDdhQXhjNFNyTjBiWVd2MENYUmhualkwRE9UeTRFV0VjcGwrOFVFL042WnFMT2F1bmlzczFvdgo2RVpvOEc2eHk1c25EZkh4Umk5aEZaOWt5MHViL0dOZW1RUUdockxkWVd0SGdsNGtoRERWdmV4cGx0SlUwYW5ZCi84NGdDdEpyQWdNQkFBRUNnZ0VBQkV6RU9pbnp0TklySlliUitJU0Rad0E4ZkZXQWk2VVVkVEhZUG9jaGxFTUwKZ1NmQWpsNE8zeTBIdjY1eHF3NGhoNXBJSEYydGZzOHJWUld0THNZVmMyb0ZwSEVlTENVb0cyVXdlajFsRkdWWAp3ZzdIS1g3NDRpbWNCSGdKUi9KdmI1cERmUUc5dUF3TTZMc2tLTFBJTDlxUnJqQ0NFZTRtN28vRS9UQU1XdzVjCkNzSjdIWkNVTmlhU0xoYTBIUzB0eHV0bnVOSHZHV2YyUTRrTWUxV2VXbVF2bzJwYXBlKzNzSWZrRnNGVU5RU2wKSlhzN05qSy8yM1ZON1Yya3NVR0V5eWRFSm5tSFVadDRVVGRzVHFqSk83eDMxR1hGdjZHRytaNGttZ2hiVlpBRApMdXloRjdSSXp4MXJoNTF0RjZnQ1Bxdmk2NFQvNFN4RlUzMjU2SnhyOVFLQmdRRDdvWkpQamMvOFVUOG5hYzAzClp4MU5iblhzbHhVZS9lQWpZRGJVV2pxKzl4amhQS2E5dUJ6UnBkWXI0UndGYTc5bkZwT2NkTkU0ejZSTmovbkMKZGtWSTdxVDQ1bEMwUlBuWWY2UVBsMm9Wck1uZ1BkRi9wczEyODEybC91dVFHQTFXeE5QNW44YVBnVkpRcEZEagpSTXNCazMzN2NGeWlKMUt6cTMzclVSRUdGd0tCZ1FEM2VDU2VLUTljYzBia3B3UHhobHVRRlVVeVBVcmVNaHRlCjVCZlVpM1NweEViNVRBc2dpUXhFRmc4WDBHRU1VcFhkc09ySmFKSXd6a3ExbHNzVnNiSHdWeVFsUmFvNko3QSsKQjJOZHpXcUhUeGw0YlZ0WnlMS3oraDlYbXVyUGlBNURUbGtYSk8xVEhNODF6MG1oaHNJbjdVRjN5aEViNjV5dQoydllrSklmZXpRS0JnQ3FDNFhVUFFGUWdaY3NDMU9qSFF1d1IvVm83TEJaUVRjMnNNNWNzcDBBYi90Z09weHptClBmZ3RURUdkaGw1a0ZiSVUzbHRRWVFoNERBb09pT09SbDZMNnJtUmVoTVB2NDBYd1NvZFh6VlJjSEw4RnNwOGUKVHhnSmhZakZ5SVpQaWZGZXozRWN6Uzd4YWphMWkvVFphbktadUc4Q1RLUVlnS0JhR0t2b3hqZUJBb0dCQUxpcwpqTThHbnpNRHg5VGNta0hFWFZJUnZYaTNhc2FVSi83UlFzTlhhckZDQ3lFQlVaQnZGWnM5eHZlamhyaldiSVpxCi8xdGNVVFJnempuakZSelVaWkNReHlXVmJtcEZzZTBvUUV3QS9rMkpodDFxNW5BREtQRE1hRlZOQTR2cDRaTHkKeGVOU3FGU012RWxRcm9iKzlLY3RFOTBjQzFhRnBvQ0tZSU1xUzhiRkFvR0FaZmF6MzU0V1Fqb1hCeURJS29LegpmaHVTY3ZtdUpRYmhhcXl0ZXNaaDVsSHdVVXMyN2tscW5jRitUUWNsYWpTaVRWeWY5VzRab2t6ZWJ1ekhEZzgzCk8rNTFmeU5nUlZBY2d2MEhWbHp4T2pFSVAzWnh2a2hnZ1hiVnhvSHRMZEMxTnpsaVRJdDBCTVQvM0o1OS92dS8KaSt4RGk2OHdicytLNklxY3BjSW1oYzQ9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  tls:
+    - hosts:
+        - castdemo.example.com
+      secretName: my-tls-secret
+  rules:
+    - host: castdemo.example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx
+                port:
+                  number: 80
