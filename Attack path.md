@@ -1,3 +1,6 @@
+# Showing the functionality of attack path on CAST AI
+
+## Introduction
 Before proceeding to this use-case, check the 'Attack path' under Security. 
 You will not be seeing anything there because this cluster currently is not being exposed to the internet through any ingress controller or service.
 During the demo (where you will actually have the attack paths present as the following configurations will already be set up), show the 
@@ -15,7 +18,7 @@ helm repo update
 helm install nginx-ingress ingress-nginx/ingress-nginx \
     --create-namespace --namespace ingress-nginx
 ```
-
+Step 2: 
 After few minutes, you should see something like this:
 giri@cloudshell:~/microservices-demo (demos-321800)$ kubectl get service --namespace ingress-nginx nginx-ingress-ingress-nginx-controller
 NAME                                     TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
@@ -24,7 +27,7 @@ nginx-ingress-ingress-nginx-controller   LoadBalancer   34.118.234.125   34.46.4
 ```
 kubectl get service --namespace ingress-nginx nginx-ingress-ingress-nginx-controller
 ```
-
+Step 3:
 Encrypting traffic:
 Configure tls with private key, csr and certificate prior to this step and copy the appropriate keys to the ingress-config.yaml 
 
@@ -42,7 +45,7 @@ Generate self-signed certificate:
 ```
 openssl x509 -req -in tls.csr -signkey tls.key -out tls.crt -days 365
 ```
-
+Step 4: 
 Next, apply this yaml to create an nginx ingress service, expose the deployment with 'ClusterIP' and an ingress resource:
 ```
 https://github.com/castai-demo/security-demos/blob/master/ingress-config.yaml
