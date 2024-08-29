@@ -46,7 +46,7 @@ Generate self-signed certificate:
 openssl x509 -req -in tls.csr -signkey tls.key -out tls.crt -days 365
 ```
 Step 4: 
-Next, apply this yaml to create an nginx ingress service, expose the deployment with 'ClusterIP' and an ingress resource:
+Next, apply this yaml to create an nginx ingress service, expose the deployment with type 'LoadBalancer' and an ingress resource:
 ```
 https://github.com/castai-demo/security-demos/blob/master/ingress-config.yaml
 ```
