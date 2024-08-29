@@ -17,5 +17,17 @@ giri@cloudshell:~/microservices-demo (demos-321800)$ kubectl get service --names
 NAME                                     TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
 nginx-ingress-ingress-nginx-controller   LoadBalancer   34.118.234.125   34.46.43.231   80:30640/TCP,443:31409/TCP   7m3s
 
+Encrypting traffic:
+Configure tls with private key, csr and certificate prior to this step and copy the appropriate keys to the ingress-config.yaml 
+
+Generate a private key:
+openssl genrsa -out tls.key 2048
+
+Create a certificate signing request:
+openssl req -new -key tls.key -out tls.csr
+
+Generate self-signed certificate:
+openssl x509 -req -in tls.csr -signkey tls.key -out tls.crt -days 365
+
 Next, apply this yaml to create an nginx ingress service, expose the deployment with 'ClusterIP' and an ingress resource:
 https://github.com/castai-demo/security-demos/blob/master/ingress-config.yaml
