@@ -67,9 +67,9 @@ nginx-ingress-ingress-nginx-controller   LoadBalancer   34.118.234.193   35.225.
 Step 9: Demoing the attack path:
         ![Screenshot 2024-08-29 at 5 46 31 PM](https://github.com/user-attachments/assets/642940dd-3fb3-4a96-a5dc-89349e97d6bd)
 
-        Click on the nginx service and ngnix deployment to show the misconfigurations in these resources.
-        Utlimately the image that is part of the container is all the way to the right. 
-        This image will probably have multiple vulnerabilities and these can be seen once you click on it (opens a new window to take you to vulnerabilities page).
+Click on the nginx service and ngnix deployment to show the misconfigurations in these resources.
+Utlimately the image that is part of the container is all the way to the right. 
+This image will probably have multiple vulnerabilities and these can be seen once you click on it (opens a new window to take you to vulnerabilities page).
 
 Step 10: Finally, the use-case can be described as to how we prioritize only those workloads that are exposed to the internet 
          where attackers can exploit the vulnerabilities. Fixing these first will considerably reduce the risk of attacks.
