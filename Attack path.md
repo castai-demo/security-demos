@@ -61,10 +61,11 @@ https://github.com/castai-demo/security-demos/blob/master/ingress-config.yaml
 ```
 Step 8: Give few minutes for the attack path to get generated (if nothing shows up, troubleshoot your ingress service to check if an external IP is assigned to the service)
         You should see something similar to this:
+```
         giri@cloudshell:~ (demos-321800)$ kubectl get service --namespace ingress-nginx nginx-ingress-ingress-nginx-controller
 NAME                                     TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)                      AGE
 nginx-ingress-ingress-nginx-controller   LoadBalancer   34.118.234.193   35.225.194.245   80:32562/TCP,443:31251/TCP   3h
-
+```
 Step 9: Demoing the attack path:
         ![Screenshot 2024-08-29 at 5 46 31 PM](https://github.com/user-attachments/assets/642940dd-3fb3-4a96-a5dc-89349e97d6bd)
 
