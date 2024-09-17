@@ -28,10 +28,11 @@ helm install nginx-ingress ingress-nginx/ingress-nginx \
 ```
 Step 5: 
 After few minutes, you should see something like this:
+```
 giri@cloudshell:~/microservices-demo (demos-321800)$ kubectl get service --namespace ingress-nginx nginx-ingress-ingress-nginx-controller
 NAME                                     TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE
 nginx-ingress-ingress-nginx-controller   LoadBalancer   34.118.234.125   34.46.43.231   80:30640/TCP,443:31409/TCP   7m3s
-
+```
 ```
 kubectl get service --namespace ingress-nginx nginx-ingress-ingress-nginx-controller
 ```
