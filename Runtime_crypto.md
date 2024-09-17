@@ -26,7 +26,8 @@ This public image is used by the `jupyter-crypto` deployment.
     - ![alt text](docs/miner_output.png)
 5) Within a few minutes after executing the Jupyter notebook, detected anomalies should appear in the Cast Console.
 6) Before showing the anomalies on Runtime menu to the customer, go to the Vulnerabilities tab and show that the docker image has 0 vulnerabilities.
+    - ![alt text](docs/clean.png)
     The fact that there was no vulnerabilities in the image does not mean that the workload using the image is safe because the drift is introduced in the form of the jupyter notebook with
     a hidden cryptominer when executing a notebook.
-    
+    - ![alt text](docs/runtime.png)
 6) last cell keeps retrying to run the miner, this can/should be stop by clicking the `Stop` button
