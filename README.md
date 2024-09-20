@@ -1,4 +1,6 @@
-
+```
+Once this setup is completed, refer to Attack path.md and Runtime_crypto.md for use-cases demo
+```
 **Online Boutique** is a cloud-native microservices demo application.
 Online Boutique consists of a 10-tier microservices application. The application is a
 web-based e-commerce app where users can browse items,
