@@ -14,7 +14,7 @@ This public image is used by the `jupyter-crypto` deployment.
 
 ### Steps:
 1) deploy this manifest in the target cluster where `kvisor-agent` is already setup to monitor runtime events.
-    - `kubectl apply -f ./manifests/deployment.yaml` (from the [src](https://github.com/castai-demo/security-demos/blob/master/src/) folder)
+    - `kubectl apply -f ./manifests/jupyter-deployment.yaml` (from the [src](https://github.com/castai-demo/security-demos/blob/master/src/) folder)
     - Notebook is exposed on port `8888`
 2) create a port-forwarding to the corresponding service `kubectl port-forward svc/jupyter-crypto 8888` 
 3) view the logs of the pod to get the access URL with the session token as GET parameter
